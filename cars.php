@@ -19,17 +19,19 @@
 
 	$cars = array($porsche, $ford, $lexus, $mercedes);
 
-	$cars_matching_input = [];
-	foreach ($cars as $car) {
-		if(($car->price < $search_price)&&($car->miles < $search_miles)){
-			array_push($cars_matching_input, $car);
+	function search_cars($cars){
+		$cars_matching_input = [];
+		foreach ($cars as $car) {
+			if(($car->price < $_GET["search_price"])&&($car->miles < $_GET["search_miles"])){
+				array_push($cars_matching_input, $car);
+			}
+		}
+		if (empty($cars_matching_input)){
+			return "No cars matching search.";
+		} else {
+			return $cars_matching_input;
 		}
 	}
-	if (empty($cars_matching_input)){
-		echo "No cars matching search.";
-	} else {
-		var_dump($cars_matching_input);
-	}
-
+	var_dump(search_cars($cars));
 	// echo $result->search_cars($cars);
 ?>
